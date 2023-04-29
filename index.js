@@ -5,7 +5,13 @@ const { userRoute } = require("./Router/user.Route");
 const { auth } = require("./middleware/auth.midleware");
 let cors = require("cors");
 let app = express();
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Home-page");
